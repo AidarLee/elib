@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="documents/ntb_kstu.png" type="image/icon type">
+
+
+     <!-- use django static tag ton load js file and css file. -->
+     
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static '\LibSite\css\main.css' %}">
+	<link rel="stylesheet" type="text/css" href="js/bootstrap/bootstrap.min.css">
+
+
+     <script src="{% static '\LibSite\js\card.color.js' %}"></script>
+     <script src="https://kit.fontawesome.com/91c28b331a.js" crossorigin="anonymous"></script>
+
+
+<style type="text/css">
+body{
+     background: #dcdcd7;
+     overflow: scroll;
+}</style>
+
+
+</head>
+<body>
+
+
+<!-- ============= COMPONENT ============== -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: #5d61a2; z-index: 1; width: 100%;">
+ <div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'main' %}" style="font-size: 16px;"><img src="/documents/ntb_kstu.png" style="height:34px"></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+     <ul class="navbar-nav">
+          <li class="nav-item active"> <a class="nav-link" href="{% url 'main' %}"><i class="fas fa-home"></i> Главная </a> </li>
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown"><i class="fas fa-users"></i>  О библиотеке  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="{% url 'story'%}"> Страницы истории</a></li>
+                 <li><a class="dropdown-item" href="{% url 'services' %}"> Услуги</a></li>
+                 <li><a class="dropdown-item" href="{% url 'our-partners' %}"> Наши партнеры </a></li>
+                 <li><a class="dropdown-item" href="{% url 'service-department' %}"> Отдел обслуживания </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DofTandA' %}"> Отдел обучения и автоматизации </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DEDB' %}"> Отдел электронной <br>документации и библиографии </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DECDIR' %}"> Отдел электронного <br>каталога и развития<br>информационных ресурсов </a></li>
+              </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-box-open"></i>  Электронные ресурсы  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="https://www.eapo.org/ru/"> ЕАПАТИС (патентная база) <img src="documents/eapatic.png" height="30" width="80" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="http://www.biblioclub.ru/"> Университетская библиотека онлайн <img src="documents/ЭБС-1-log.png" height="30" width="30" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="https://www.iprbookshop.ru/"> Цифровой образовательный ресурс <img src="documents/Logotip-IPR-BOOKS-300x135.png" height="40" width="100" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="https://online.toktom.kg/"> Токтом -  Законодательство Кыргызской Республики <img src="documents/header_logo.png" height="40" width="100" alt="" /></a></li>
+              </ul>
+          </li>
+
+          <li class="nav-item active"> <a class="nav-link" href="http://kyrlibnet.kg/ru/ec/" target="_blank"><i class="far fa-books"></i> Электронный каталог </a> </li>
+
+          <li class="nav-item active"> <a class="nav-link" href="{% url 'nbooks' %}"><i class="fas fa-arrow-down"></i> Новые поступления </a> </li>
+
+          <li class="nav-item"><a class="nav-link" href="{% url 'tidings' %}"><i class="fas fa-file-pdf"></i> Известия КГТУ</a></li>
+          
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-box-open"></i>  Кирлибнет  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="http://kyrlibnet.kg/" target="_blank"> Кирлибнет</a></li>
+                 <li><a class="dropdown-item" href="http://arch.kyrlibnet.kg/" target="_blank"> Открытые архивы </a></li>
+                 <li><a class="dropdown-item" href="http://edd.kyrlibnet.kg/" target="_blank"> Электронная доставка документов </a></li>
+              </ul>
+          </li>
+
+     </ul>
+     <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Постетить сайт </a>
+              <ul class="dropdown-menu dropdown-menu-end fade-down">
+                 <li><a class="dropdown-item" href="https://kstu.kg/"> КГТУ им. И. Раззакова </a></li>
+                 <li><a class="dropdown-item" href="https://avn.kstu.kg/"> Портал ИС "AVN" </a></li>
+              </ul>
+          </li>
+     </ul>
+  </div> <!-- navbar-collapse.// -->
+ </div> <!-- container-fluid.// -->
+</nav>
+<!-- ============= COMPONENT END// ============== -->
+
+<main>
+	<div class="main-block">
+		{% block content %}
+         
+	    {% endblock  %}
+    </div>
+</main>
+
+
+

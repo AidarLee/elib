@@ -1,0 +1,78 @@
+{% extends 'LibSite/layout.html' %}
+
+{% block title %}Инструкция по ВКР{% endblock  %}
+
+{% block content %}
+
+  <br><h1>Инструкция по ВКР</h1>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Инструкция по ВКР
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <h1>Выпускная квалификационная работа должна быть собрана в едином файле PDF и содержать следующие пункты:</h1>
+        <p>1. Титульный лист</p><br>
+        <img src="documents/Титульный-лист.png">
+        <p>2. Расчетно-пояснительная записка
+              или Задание по ВКР<br>
+              <br>
+
+              Расчетно-пояснительная записка или Задание по выпускной квалификационной работы должны содержать:
+              <ul style="margin-left: 50px;">
+              <li>Название вашей работы<br></li>
+              <li>Подпись заведующего кафедрой<br></li>
+              <li>Подпись рецензента<br></p></li>
+            </ul>
+            <img src="documents/РПЗ-по-ВКР.png">
+            <p>
+              3. Справка антиплагиата<br><br>
+ 
+
+              Справка о результатах проверки текстового документа на наличие заимствований.<br>
+              Справка должна быть выполнена в системе «Антиплагиат.ВУЗ».<br>
+            </p>
+            <img src="documents/Справка.png">
+            <p>
+              4. Содержание
+            </p>
+            <img src="documents/Содержание.png">
+            <p>5. Аннотация<br><br>
+            Краткое изложение содержания работы<br></p>
+            <img src="documents/Аннотация.png">
+            <p>
+              6. Текст работы<br><br>
+
+              Полный текст вашей работы<br>
+              7. Список литературы<br><br>
+
+              Полный список литературы использованной в ходе написания выпускной квалификационной работы.<br>
+              В него входят:<br>
+              <ul style="margin-left: 50px"><li>Печатные источники<br></li>
+              <li>Электронные ресурсы<br></li><br></ul></p>
+               
+              <p>Список составляется в алфавитном порядке.<br></p>
+            <img src="documents/Литература.png">
+            <h1>ВКР сдается секретарю ГАКа, секретарь ГАКа передает ВКР в библиотеку под роспись.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Видео инструкция по ВКР 
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <video class="video-fluid z-depth-1" autoplay loop controls muted style="width: 540px; height: 340px; margin-left: 110px;">
+          <source src="videos/ВКР-инструкция.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock  %}

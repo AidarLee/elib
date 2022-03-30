@@ -1,0 +1,16 @@
+{% extends "LibSite/layout.html" %}
+
+{% block title %}{{notes.title}}{% endblock %}
+
+{% block content %}
+
+<div class="news-card">
+	<h1 style="margin: 50px; font-family: sans-serif; font-style: normal; font-weight: bold; font-size: 20px; color: #5d61a2; margin-left: 50px">{{notes.title}}</h1>
+	<p style="margin-top: -50px; font-size:14px; font-weight: bold; color: grey;">Дата публикации:	{{notes.created_on|date:"d-m-Y"}}</p>
+	<p style="margin-top: -10px; font-size: 16px; font-weight: normal; color: #525252; margin:50px">{{notes.text}}</p>
+	{% block Gallery %}
+   		{% include "LibSite/images.html" %}
+	{% endblock %}
+</div>
+
+{% endblock %}

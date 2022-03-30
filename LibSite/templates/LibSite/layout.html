@@ -1,0 +1,545 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="documents/ntb_kstu.png" type="image/icon type">
+
+
+     <!-- use django static tag ton load js file and css file. -->
+     
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static '\LibSite\css\main.css' %}">
+
+
+<style type="text/css">
+body{
+     background: #ecece9;
+     overflow: auto;
+}
+
+  /*Анимация слайдера*/
+
+@keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-210px * 7));
+            transform: translateX(calc(-250px * 7));
+  }
+}
+
+/*Слайдер наши партнеры*/
+
+.carous2 {
+  height: 1%;
+  margin: auto;
+  width: 62%;
+  border-radius: 0px;
+  margin-top: 180px;
+  overflow: hidden;
+}
+.carous2 .carous-track2 {
+  -webkit-animation: scroll 200s linear infinite;
+          animation: scroll 200s linear infinite;
+  display: flex;
+  width: calc(150px * 14);
+}
+.carous2 .carous {
+  height: 20%;
+  width: 30%;
+}
+
+.card-body a{
+font-family: sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 100%;
+line-height: 10%;
+color: #5d61a2;
+text-decoration: none;
+}
+
+.card-body a:hover{
+  color: #d598a0;
+  background: #EBF2FF;
+  background-size: 100%;
+}
+
+/*Верхняя левая навигационная панель */
+.card-left{
+  float: left;
+  background: #0d6efdd1;
+  margin-top: -6.5%;
+  height: 40%;
+  width: 19%;
+}
+
+/*Верхняя правая навигационная панель */
+
+.card-right{
+  float: right;
+  background: #0d6efdd1;
+  margin-top: -6.5%;
+  width: 19%;
+  height: 19%;
+}
+
+/*Главный новостной блок*/
+.main-block{
+  overflow: auto;
+  background: #fff;
+  border-radius: 2%;
+  width: 61%;
+  height: 600px;
+  margin-top: 20%;
+  margin-left: 19.5%;
+}
+
+.news-card a{
+  margin-left: 5.5%;
+  font-size: 24px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #5d61a2;
+  text-decoration: none;
+}
+
+.news-card p{
+  margin-top: -5px;
+  font-size: 16px; 
+  font-weight:bold; 
+  color: darkgray;"
+}
+
+.news-card h5{
+  margin-left: 50px;
+  margin-top: -30px;
+  font-size: 16px; 
+  font-weight:bold; 
+  color: #525252;"
+}
+
+.img-header{
+  margin-left: 19.5%;
+  width: 61.5%; 
+  position: absolute; 
+}
+
+.line{
+  color: black;
+}
+
+h1{
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #5d61a2;
+}
+
+.accordion{
+  margin: 50px;
+}
+
+p{
+  margin-left: 50px;
+}
+
+.textbox{
+  margin: 10px;
+}
+
+/*Карусель*/
+
+
+
+.kar-div{
+  margin-left: 19.5%;
+  margin-top: 7%;
+}
+
+.kar-ul{
+  left: 50%;
+}
+
+.kar-item {
+  list-style-type: none;
+  margin-left: 19.5%;
+  position:absolute;
+  width: 20%;
+  height: 25%; 
+  opacity: 0;
+  transition: 1s opacity; 
+}
+
+.active {
+  opacity: 1;
+}
+
+.kar-image{
+  width: 90%;
+  height: 100%;
+}
+
+</style>
+
+
+</head>
+<body>
+
+
+<!-- ============= COMPONENT ============== -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: #5d61a2; z-index: 1; width: 100%;">
+ <div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'main' %}" style="font-size: 16px;"><img src="/documents/ntb_kstu.png" style="height:34px"></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+     <ul class="navbar-nav">
+          <li class="nav-item active"> <a class="nav-link" href="{% url 'main' %}"><i class="fas fa-home"></i> Главная </a> </li>
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown"><i class="fas fa-users"></i>  О библиотеке  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="{% url 'story'%}"> Страницы истории</a></li>
+                 <li><a class="dropdown-item" href="{% url 'services' %}"> Услуги</a></li>
+                 <li><a class="dropdown-item" href="{% url 'our-partners' %}"> Наши партнеры </a></li>
+                 <li><a class="dropdown-item" href="{% url 'service-department' %}"> Отдел обслуживания </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DofTandA' %}"> Отдел обучения и автоматизации </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DEDB' %}"> Отдел электронной <br>документации и библиографии </a></li>
+                 <li><a class="dropdown-item" href="{% url 'DECDIR' %}"> Отдел электронного <br>каталога и развития<br>информационных ресурсов </a></li>
+              </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-box-open"></i>  Электронные ресурсы  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="https://www.eapo.org/ru/"> ЕАПАТИС (патентная база) <img src="documents/eapatic.png" height="30" width="80" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="http://www.biblioclub.ru/"> Университетская библиотека онлайн <img src="documents/ЭБС-1-log.png" height="30" width="30" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="https://www.iprbookshop.ru/"> Цифровой образовательный ресурс <img src="documents/Logotip-IPR-BOOKS-300x135.png" height="40" width="100" alt="" /></a></li>
+                 <li><a class="dropdown-item" href="https://online.toktom.kg/"> Токтом -  Законодательство Кыргызской Республики <img src="documents/header_logo.png" height="40" width="100" alt="" /></a></li>
+              </ul>
+          </li>
+
+          <li class="nav-item active"> <a class="nav-link" href="http://kyrlibnet.kg/ru/ec/" target="_blank"><i class="far fa-books"></i> Электронный каталог </a> </li>
+
+          <li class="nav-item active"> <a class="nav-link" href="{% url 'nbooks' %}"><i class="fas fa-arrow-down"></i> Новые поступления </a> </li>
+
+          <li class="nav-item"><a class="nav-link" href="{% url 'tidings' %}"><i class="fas fa-file-pdf"></i> Известия КГТУ</a></li>
+          
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-box-open"></i>  Кирлибнет  </a>
+              <ul class="dropdown-menu fade-up">
+                 <li><a class="dropdown-item" href="http://kyrlibnet.kg/" target="_blank"> Кирлибнет</a></li>
+                 <li><a class="dropdown-item" href="http://arch.kyrlibnet.kg/" target="_blank"> Открытые архивы </a></li>
+                 <li><a class="dropdown-item" href="http://edd.kyrlibnet.kg/" target="_blank"> Электронная доставка документов </a></li>
+              </ul>
+          </li>
+
+     </ul>
+     <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Постетить сайт </a>
+              <ul class="dropdown-menu dropdown-menu-end fade-down">
+                 <li><a class="dropdown-item" href="https://kstu.kg/"> КГТУ им. И. Раззакова </a></li>
+                 <li><a class="dropdown-item" href="https://avn.kstu.kg/"> Портал ИС "AVN" </a></li>
+              </ul>
+          </li>
+     </ul>
+  </div> <!-- navbar-collapse.// -->
+ </div> <!-- container-fluid.// -->
+</nav>
+<!-- ============= COMPONENT END// ============== -->
+
+<!-- Изображение заголовка -->
+<img src="documents/logo_8EAuaSZ.png" class="img-header">
+<!-- Конец изображения заголовка -->
+
+<!-- <li class="kar-item"><img class="kar-image" src="https://st-1.akipress.org/st_all/bilim/3/1495770033.2.jpg"></li> 
+    <li class="kar-item"><img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/whatsapp_image_2021-10-04_at_16.30.23__4_.jpeg"></li> 
+    <li class="kar-item"><img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/mamtil25.jpg"></li> 
+    <li class="kar-item"><img class="kar-image" src="documents/IMG_9940.jpg"></li> 
+    <li class="kar-item"><img class="kar-image" src="documents/GD3A9939_TnvCdYP.jpg"></li> 
+    <li class="kar-item"><img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/a56f1731-7199-492e-8a11-a35f5d93385d.jpg"></li> -->
+
+
+<!-- Главная верхняя карусель -->
+<div class="kar-div">
+<ul class="kar-ul" id="c">   
+    <li class="kar-item"><img class="kar-image" src="https://st-1.akipress.org/st_all/bilim/3/1495770033.2.jpg"></li>
+    <li class="kar-item">
+      <img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/whatsapp_image_2021-10-04_at_16.30.23__4_.jpeg">
+    </li>
+    <li class="kar-item"><img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/mamtil25.jpg"></li>
+    <li class="kar-item"><img class="kar-image" src="documents/IMG_9940.jpg"></li>
+    <li class="kar-item"><img class="kar-image" src="https://st-1.akipress.org/st_all/bilim/3/1495770033.2.jpg"></li>
+    <li class="kar-item"><img class="kar-image" src="documents/GD3A9939_TnvCdYP.jpg"></li>
+    <li class="kar-item"><img class="kar-image" src="https://st-1.akipress.org/st_all/bilim/3/1495770033.2.jpg"></li>
+    <li class="kar-item">
+      <img class="kar-image" src="https://kstu.kg/fileadmin/user_upload/a56f1731-7199-492e-8a11-a35f5d93385d.jpg">
+    </li>
+</ul>
+</div>
+<!-- Конец главной верхней карусели -->
+
+
+
+
+<!-- Боковая панель Студентам и Видеопрезентации -->
+<div class="card-left" style="background: #fff;">
+  <div class="card-header" style="background: #d598a0; color: white;">     Студентам </div>
+  <div class="card-body">
+     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+      <li><a href="{% url 'info' %}" class="link-dark rounded">Справочник</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'acquisition' %}" class="link-dark rounded">Комплектование</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'instr1' %}" class="link-dark rounded">Инструкция по работе в ЭК</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'instr2' %}" class="link-dark rounded">Инструкция по ВКР</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'elib' %}" class="link-dark rounded">Электронная библиотека</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'reading-room' %}" class="link-dark rounded">Читальные залы</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+  </div>
+
+  <div class="card-header" style="background: #d598a0; color: white;">      Видеопрезентации</div>
+  <div class="card-body">
+    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'vid-el-cat' %}" class="link-dark rounded">Электронный каталог</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'inf-res' %}" class="link-dark rounded">Информационные ресурсы</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'of-sci' %}" class="link-dark rounded">Оформление научной работы<br>студента</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'vyp-work' %}" class="link-dark rounded">Выпускная квалификационная<br>работа</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'ed-kyrlibnet' %}" class="link-dark rounded">Образовательный портал "kyrlibnet"</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="http://lib.kstu.kg/wp-content/uploads/2021/02/%D0%9F%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F-IPRbooks.pptx" class="link-dark rounded">ЭБС "IPR BOOKS"</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'ebs-ulo' %}" class="link-dark rounded">ЭБС "Университетская библиотека онлайн"</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'ebs-ulo-period'%}" class="link-dark rounded">ЭБС "Университетская библиотека онлайн периодика"</a></li></ul>
+  </div>
+</div>
+<!-- Конец боковой панели Студентам и Видеопрезентации -->
+
+
+<!-- Боковая панель Для науки -->
+<div class="card-right" style="background: #fff;">
+
+  <div class="card-header" style="background: #57a08f; color: white;">        Для науки</div>
+  <div class="card-body">
+    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="margin-top: 5px">
+        <li><a href="{% url 'science_resurses' %}" class="link-dark rounded">Ресурсы: ищем и читаем</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'library-discription' %}" class="link-dark rounded">Рекомендации: Написание, оформление и публикация</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'science_naukometria' %}" class="link-dark rounded">Наукометрия: сравниваем и оцениваем</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="http://portfolio.kyrlibnet.kg/" class="link-dark rounded" target="_blank">Портфолио научного сотрудника КГТУ им. И. Раззакова </a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+  </div>
+
+  <div class="card-header" style="background:#57a08f; margin-top: 10px; color: white;">         Полезно знать</div>
+  <div class="card-body" style="background: #fff;">
+    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'libsOftheWorld' %}" class="link-dark rounded">Библиотеки мира</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li><a href="{% url 'IntFacts' %}" class="link-dark rounded">Интересные факты о библиотеках</a></li></ul>
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+  </div>
+
+  <div class="card-header" style="background:#57a08f; margin-top: 10px; color: white;">         Статистика</div>
+  <div class="card-body" style="background: #fff;">
+    <p>Количество посещений сайта:</p>
+  </div>
+</div>
+
+<!-- Конец боковой панели Для науки -->
+ 
+
+ <!-- Главный информационный блок -->
+     <main>
+          <div class="main-block">
+	    {% block content %}
+         
+	    {% endblock  %}
+          </div>
+     </main>
+  <!-- Конец главного информационного блока -->
+
+  
+  <!-- Карусель Наши партнеры -->
+<div class="carous2" style="background: #ecece9; margin-left: 19.5%; margin-top: 15px;">
+     <div class="carous-track2">
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/WorldBook.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/Hinari.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/polpred1.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/Manas.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2019/02/77.jpg" height="100" width="150" alt="" />
+          </div>
+
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/eapatic.png" height="100" width="150" alt="" />
+          </div>
+
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/ElectronicJL.png" height="100" width="150" alt="" />
+          </div>
+
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/KOO_logo_w.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/IOP.png" height="100" width="150" alt="" />
+          </div>
+          <div class="carous">
+               <img src="https://lib.kstu.kg/wp-content/uploads/2017/05/ElectronicJL.png" height="100" width="150" alt="" />
+          </div>
+     </div>
+</div>
+<!-- Конец карусели Наши партнеры -->
+
+
+<!-- Bottom footer -->
+<footer class="bg-light text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #dd4b39;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #ac2bac;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #333333;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #FFFF;">
+    <a class="text-black" href="" style="text-decoration: none;">Это бета версия сайта, могут быть различные неисправности</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Bottom footer end -->
+
+          
+     </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+var timer = 4000;
+
+var i = 0;
+var max = $('#c > li').length;
+ 
+  $("#c > li").eq(i).addClass('active').css('left','1%');
+  $("#c > li").eq(i + 1).addClass('active').css('left','21.5%');
+  $("#c > li").eq(i + 2).addClass('active').css('left','42%');
+ 
+
+  setInterval(function(){ 
+
+    $("#c > li").removeClass('active');
+
+    $("#c > li").eq(i).css('transition-delay','0.25s');
+    $("#c > li").eq(i + 1).css('transition-delay','0.5s');
+    $("#c > li").eq(i + 2).css('transition-delay','0.75s');
+
+    if (i < max-4) {
+      i = i+4; 
+    }
+
+    else { 
+      i = 0; 
+    }  
+
+    $("#c > li").eq(i).css('left','1%').addClass('active').css('transition-delay','1.25s');
+    $("#c > li").eq(i + 1).css('left','21.5%').addClass('active').css('transition-delay','1.5s');
+    $("#c > li").eq(i + 2).css('left','42%').addClass('active').css('transition-delay','1.75s');
+  
+  }, timer);
+</script>
+
+</body>
+
+
+</html>

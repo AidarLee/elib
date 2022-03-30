@@ -1,0 +1,27 @@
+{% extends 'LibSite/layout.html' %}
+
+{% block title %}Комплектование{% endblock  %}
+
+{% block content %}
+<h1>Комплектование</h1>
+
+<p>Отдел электронного каталога и информационных ресурсов НТБ принимает заказы на приобретение изданий, соответствующих профилю комплектования библиотечного фонда. Заказы принимаются как в печатной форме (к. 1/271), так и в электронном виде.<br>
+<strong>Пожалуйста, заполните все обязательные поля.</strong></p>
+
+<form style="margin:50px">
+  <input class="form-control" type="text" placeholder="Автор(авторы)">
+
+  <div class="form-group" style="margin-top:20px">
+    <label for="exampleInputEmail1">Ваш e-mail (обязательно)</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="user@example.com">
+  </div>
+
+  <input class="form-control" type="text" placeholder="Тема" style="margin-top:20px">
+  <div class="form-group" style="margin-top:20px">
+    <label for="exampleFormControlTextarea1">Сообщение</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" style="margin-top:20px">Отправить</button>
+</form>
+
+{% endblock %}
